@@ -114,7 +114,42 @@ int MergeSort(vector<int>& arr, int l, int r) {
     }
     return 0;
 }
+int CountSort(vector<int>& arr) {
+    int n = arr.size();
 
+    // Find the maximum element in the array
+    int k = *max_element(arr.begin(), arr.end());
+
+    // Create a count array and initialize all elements as 0
+    vector<int> count(k + 1, 0);
+
+    // Store the count of each element
+    for (int i = 0; i < n; i++) {
+        count[arr[i]]++;
+    }
+
+    // Modify the count array such that each element at each index
+    // stores the sum of previous counts
+    for (int i = 1; i <= k; i++) {
+        count[i] += count[i - 1];
+    }
+
+    // Output array
+    vector<int> output(n);
+
+    // Build the output array
+    for (int i = n - 1; i >= 0; i--) {
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--;
+    }
+
+    // Copy the output array to arr, so that arr now contains sorted numbers
+    for (int i = 0; i < n; i++) {
+        arr[i] = output[i];
+    }
+
+    return 0;
+}
 
 int main() {
     int n;
@@ -125,7 +160,7 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
-    cout << "\n1. Bubble Sort \n2. Selection Sort \n3. Insertion Sort \n4. Quick Sort \n5. Merge Sort \nEnter the option number: ";
+    cout << "\n1. Bubble Sort \n2. Selection Sort \n3. Insertion Sort \n4. Quick Sort \n5. Merge Sort \n6. Count Sort \nEnter the option number: ";
     int choice;
     cin >> choice;
     switch (choice) {
@@ -143,6 +178,9 @@ int main() {
             break;
         case 5:
             MergeSort(arr,0,n-1);
+            break;
+        case 6:
+            CountSort(arr);
             break;
         default:
             cout << "Invalid option!";
