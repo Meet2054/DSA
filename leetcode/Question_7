@@ -1,0 +1,60 @@
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+
+Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
+
+ 
+
+Example 1:
+
+Input: x = 123
+Output: 321
+Example 2:
+
+Input: x = -123
+Output: -321
+Example 3:
+
+Input: x = 120
+Output: 21
+
+
+
+#---------------------------------------------
+
+Certainly! The lines you're asking about are used to handle potential integer overflow issues when reversing the integer. Let's break it down step by step.
+
+Background:
+In many programming environments, integers are represented using 32 bits. This means the range of values a 32-bit signed integer can hold is from  -2**31 to 2**31 -1
+ which is from -2,147,483,648 to 2,147,483,647.
+
+When reversing the digits of an integer, there is a possibility that the resulting number could exceed these bounds. If the reversed integer falls outside this range, it would overflow and not be representable as a 32-bit integer.
+
+Code Explanation:
+python
+Copy code
+if reversed_int < -2**31 or reversed_int > 2**31 - 1:
+    return 0
+Here's what each part does:
+
+reversed_int < -2**31:
+
+This checks if the reversed integer is less than 
+−
+2
+31
+−2 
+31
+ . If reversed_int is smaller than -2,147,483,648, it is too small to be represented as a 32-bit signed integer.
+reversed_int > 2**31 - 1:
+
+This checks if the reversed integer is greater than 
+2
+31
+−
+1
+2 
+31
+ −1. If reversed_int is larger than 2,147,483,647, it is too large to be represented as a 32-bit signed integer.
+return 0:
+
+If either of the above conditions is true (meaning the reversed integer is out of the 32-bit integer range), the function returns 0. This is a common way to indicate that an overflow has occurred.
