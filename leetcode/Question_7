@@ -19,8 +19,7 @@ Output: 21
 
 
 
-#---------------------------------------------
-
+#---------------------------------------------------------------------------------------------------------
 Certainly! The lines you're asking about are used to handle potential integer overflow issues when reversing the integer. Let's break it down step by step.
 
 Background:
