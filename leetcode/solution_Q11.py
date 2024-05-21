@@ -1,3 +1,4 @@
+from typing import List
 #Brute force
 '''
 class Solution:
