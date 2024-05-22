@@ -73,3 +73,6 @@ class Solution:
         cache[key] = False
         return cache[key]                    
 
+solution = Solution()
+print(solution.isMatch("aab", "c*a*b"))  # Expected output: True
+print(solution.isMatch("mississippi", "mis*is*p*."))  # Expected output: False
